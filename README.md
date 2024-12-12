@@ -1,8 +1,27 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# E-Commerce Frontend
 
-Currently, two official plugins are available:
+This is the frontend for an e-commerce application. The project is built using React and provides a user-friendly interface to explore products, sign up, and log in. The data for products is fetched from [dummyjson.com](https://dummyjson.com/products?limit=10).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Navbar**: A responsive navigation bar for seamless navigation.
+- **Sign Up**: A user registration form to create an account.
+- **Login**: A login form to authenticate users.
+- **Home**: A home page that displays products fetched from a mock API.
+  
+## Tech Stack
+
+- **React**: For building the UI and handling state management.
+- **Tailwind CSS**: For styling the components.
+- **React Router**: For routing between pages (Sign Up, Login, and Home).
+  
+## Installation
+
+To run the project locally, follow these steps:
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/e-commerce-frontend.git
