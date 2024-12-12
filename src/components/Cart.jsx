@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Cartitem from "./Cartitem";
+import { products } from "../assets/temp";
 
 function Cart(props) {
+  const { items } = props;
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    const cartItemss = products.filter((product) => items.includes(product.id));
+    setCartItems(cartItemss);
+  }, []);
+  // console.log(cartItems);
   return (
     <div className="min-h-screen bg-gray-100 py-10">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6 bg-white shadow-lg rounded-lg p-6">
@@ -24,11 +32,9 @@ function Cart(props) {
           </h2>
           <hr className="border-gray-300 mb-4" />
 
-          {/* Cart Item */}
-          {/* <Cartitem  /> */}
-          {props.items.map((item) => {
+          {cartItems.map((item) => {
             <Cartitem key={item.id} item={item} />;
-            {console.log(item)}
+            // {console.log(item)}
           })}
         </div>
 
