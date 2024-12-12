@@ -2,14 +2,30 @@ import React, { useEffect, useState } from "react";
 import Cartitem from "./Cartitem";
 import { products } from "../assets/temp";
 
-function Cart(props) {
-  const { items } = props;
-  const [cartItems, setCartItems] = useState([]);
+function Cart({ items }) {
+  const [productPrice, setProductPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // Function to calculate the total price
   useEffect(() => {
-    const cartItemss = products.filter((product) => items.includes(product.id));
-    setCartItems(cartItemss);
-  }, []);
-  // console.log(cartItems);
+    let price = 0;
+    let discount = 0;
+
+    items.forEach((item) => {
+      // Calculate discount price for each item
+      const discountPrice = item.price * (1 - item.discountPercentage / 100);
+      price += item.price;
+      discount += item.price - discountPrice;
+      setTotalPrice(price - discount);
+      setProductPrice(price);
+    });
+  }, [items]);
+
+  // Format numbers to 2 decimal places
+  const formattedPrice = productPrice.toFixed(2);
+  const formattedTotalPrice = totalPrice.toFixed(2);
+  const formattedDiscount = (productPrice - totalPrice).toFixed(2);
+
   return (
     <div className="min-h-screen bg-gray-100 py-10">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6 bg-white shadow-lg rounded-lg p-6">
@@ -31,10 +47,8 @@ function Cart(props) {
             Order Details
           </h2>
           <hr className="border-gray-300 mb-4" />
-
-          {cartItems.map((item) => {
-            <Cartitem key={item.id} item={item} />;
-            // {console.log(item)}
+          {items.map((item) => {
+            return <Cartitem key={item.id} item={item} />;
           })}
         </div>
 
@@ -45,12 +59,12 @@ function Cart(props) {
           </h2>
           <hr className="border-gray-300 mb-4" />
           <div className="flex justify-between text-gray-600 mb-2">
-            <span>Price (1 item)</span>
-            <span>Rs. 1250</span>
+            <span>Price ({items.length} item{items.length > 1 ? "s" : ""})</span>
+            <span>Rs. {formattedPrice}</span>
           </div>
           <div className="flex justify-between text-gray-600 mb-2">
             <span>Discount</span>
-            <span className="text-green-600">- Rs. 200</span>
+            <span className="text-green-600">- Rs. {formattedDiscount}</span>
           </div>
           <div className="flex justify-between text-gray-600 mb-2">
             <span>Delivery Charges</span>
@@ -59,7 +73,7 @@ function Cart(props) {
           <hr className="border-gray-300 mb-4" />
           <div className="flex justify-between text-lg font-semibold text-gray-800">
             <span>Total Amount</span>
-            <span>Rs. 1050</span>
+            <span>Rs. {formattedTotalPrice}</span>
           </div>
           <button className="w-full mt-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">
             Place Order
