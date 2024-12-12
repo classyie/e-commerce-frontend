@@ -6,6 +6,7 @@ import NavBar from "./components/Navbar";
 import Sign from "./components/Sign";
 import Signup from "./components/Signup";
 import Cart from "./components/Cart";
+import Footer from "./components/Footer";
 function App() {
   return (
     <Router>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
