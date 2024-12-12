@@ -1,6 +1,7 @@
 import React from 'react';
 
-function Card({ data }) {
+function Card(props) {
+
   const renderStars = (rating) => {
     const filledStars = Math.round(rating);
     
@@ -24,23 +25,23 @@ function Card({ data }) {
     <div>
       <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-          <img className="p-8 rounded-t-lg h-[40%] w-[100%]" src={data.images} alt="product image" />
+          <img className="p-8 rounded-t-lg h-[40%] w-[100%]" src={props.data.images} alt="product image" />
         </a>
         <div className="px-5 pb-5">
           <a href="#">
-            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{data.title}</h5>
+            <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{props.data.title}</h5>
           </a>
           <div className="flex items-center mt-2.5 mb-5">
             <div className="flex items-center space-x-1 rtl:space-x-reverse">
-              {renderStars(data.rating)}
+              {renderStars(props.data.rating)}
             </div>
-            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">{data.rating}</span>
+            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">{props.data.rating}</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">${data.price}</span>
-            <a href="#" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <span className="text-3xl font-bold text-gray-900 dark:text-white">${props.data.price}</span>
+            <button onClick={()=>{props.addToCart(props.data.id)}} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Add to cart
-            </a>
+            </button>
           </div>
         </div>
       </div>

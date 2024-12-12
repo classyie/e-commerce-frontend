@@ -1,6 +1,6 @@
 import React from "react";
-
-function Cartitem() {
+import { products } from "../assets/temp";
+function Cartitem(props) {
   return (
     <div>
       <div className="flex flex-col md:flex-row items-start gap-4 mb-6 p-4 bg-gray-50 rounded-lg">

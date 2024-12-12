@@ -1,7 +1,7 @@
 import React from "react";
 import Cartitem from "./Cartitem";
 
-function Cart() {
+function Cart(props) {
   return (
     <div className="min-h-screen bg-gray-100 py-10">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-6 bg-white shadow-lg rounded-lg p-6">
@@ -25,9 +25,11 @@ function Cart() {
           <hr className="border-gray-300 mb-4" />
 
           {/* Cart Item */}
-          <Cartitem />
-          <Cartitem />
-          <Cartitem />
+          {/* <Cartitem  /> */}
+          {props.items.map((item) => {
+            <Cartitem key={item.id} item={item} />;
+            {console.log(item)}
+          })}
         </div>
 
         {/* Right Section: Price Details */}

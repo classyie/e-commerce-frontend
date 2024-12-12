@@ -1,10 +1,10 @@
 import React from 'react'
 import Cards from './Cards';
 
-function Home() {
+function Home(props) {
   return (
     <div>
-      <Cards />
+      <Cards addToCart={props.addToCart}/>
     </div>
   )
 }
