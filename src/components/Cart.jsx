@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Cartitem from "./Cartitem";
-import { products } from "../assets/temp";
+// import { products } from "../assets/temp";
 
-function Cart({ items }) {
+function Cart({ items, incrementQuantity, decrementQuantity, removeHandler}) {
   const [productPrice, setProductPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -13,9 +13,9 @@ function Cart({ items }) {
 
     items.forEach((item) => {
       // Calculate discount price for each item
-      const discountPrice = item.price * (1 - item.discountPercentage / 100);
-      price += item.price;
-      discount += item.price - discountPrice;
+      const discountPrice = (item.price * (1 - item.discountPercentage / 100));
+      price += ((item.price) * item.quantity);
+      discount += (item.price * item.quantity - discountPrice * item.quantity);
       setTotalPrice(price - discount);
       setProductPrice(price);
     });
@@ -48,7 +48,7 @@ function Cart({ items }) {
           </h2>
           <hr className="border-gray-300 mb-4" />
           {items.map((item) => {
-            return <Cartitem key={item.id} item={item} />;
+            return <Cartitem key={item.id} item={item} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} removeHandler={removeHandler}/>;
           })}
         </div>
 
